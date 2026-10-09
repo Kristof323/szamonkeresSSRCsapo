@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Új termék felvétele</title>
+</head>
+<body>
+    <form action="" method="post">
+        <div>
+            <label for="name">Termék neve:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+
+        <div>
+            <label for="category">Kategória:</label>
+            <select id="category" name="category" required>
+                <option value="">Válasszon kategóriát</option>
+                <option value="könyv">Könyv</option>
+                <option value="ruházat">Ruházat</option>
+                <option value="elektronika">Elektronika</option>
+                <option value="játék">Játék</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="price">Ár:</label>
+            <input type="number" id="price" name="price" min="0" step="0.01" required>
+        </div>
+
+        <div>
+            <label for="stock">Raktárkészlet:</label>
+            <input type="number" id="stock" name="stock" min="0" step="1" required>
+        </div>
+
+        <button type="submit">Termék felvétele</button>
+    </form>
+
+    <% if (typeof success !== 'undefined' && success) { %>
+        <p style="color: green;">Sikeres felvitel</p>
+    <% } %>
+
+    <p><a href="/">Vissza a főoldalra</a></p>
+
+</body>
+</html>

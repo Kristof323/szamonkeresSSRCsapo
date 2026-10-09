@@ -1,5 +1,12 @@
-import { Controller, Get, Render, Query } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, Render } from '@nestjs/common';
 import { AppService } from './app.service.js';
+
+export class CreateProductDto {
+  name!: string;
+  category!: string;
+  price!: number;
+  stock!: number;
+}
 
 @Controller()
 export class AppController {
@@ -98,5 +105,28 @@ private JsonData = [
     };
   }
 
-}
+  @Get("new")
+  @Render("new")
+  getNew() {
+    return {};
+  }
 
+  @Post("new")
+  postNew(@Body() body: CreateProductDto) {
+    const newProduct: CreateProductDto = {
+      name: body.name,
+      category: body.category,
+      price: Number(body.price),
+      stock: Number(body.stock)
+    };
+
+    this.JsonData.push(newProduct);
+
+    return {
+      message: "Termék sikeresen hozzáadva!",
+      product: newProduct
+    };
+  }
+
+  
+}
