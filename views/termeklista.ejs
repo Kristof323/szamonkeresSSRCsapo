@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+
+    <title>A termékek listája JSON-adatokkal</title>
+</head>
+<body>
+
+    <h1> Linkek a tobbi aloldalra:</h1>
+    <p><a href="/filter">Kategória szerinti szűrés</a></p> <br>
+    <p><a href="/new">Termék felvétele</a></p>
+    <table>
+        <tr>
+            <th>Név</th>
+            <th>Leírás</th>
+            <th>Ár</th>
+            <th>Készlet</th>
+        </tr>
+        <tbody>
+            <% products.forEach(product => { %>
+                <tr class="<%= Number(product.stock) === 0 ? 'red bold' : '' %>">
+                    <td><%= product.name %></td>
+                    <td><%= product.category %></td>
+                    <td><%= product.price %></td>
+                    <td class="<%= Number(product.stock) > 0 && Number(product.stock) < 5 ? 'red bold' : '' %>"><%= product.stock %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>

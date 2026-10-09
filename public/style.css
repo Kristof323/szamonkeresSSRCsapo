@@ -2,4 +2,9 @@ body {
     background-color: rgb(232, 219, 202);
     color:rgb(58, 46, 135);
 }
-
+.red {
+    color: red;
+}
+.bold {
+    font-weight: bold;
+}
