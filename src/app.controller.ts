@@ -105,13 +105,9 @@ private JsonData = [
     };
   }
 
-  @Get("new")
+ 
+  @Post("/new")
   @Render("new")
-  getNew() {
-    return {};
-  }
-
-  @Post("new")
   postNew(@Body() body: CreateProductDto) {
     const newProduct: CreateProductDto = {
       name: body.name,
