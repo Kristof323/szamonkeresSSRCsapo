@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statisztika</title>
+</head>
+<body>
+    <% const termekek = typeof products !== 'undefined' ? products : []; %>
+    <% const arak = termekek.map(termek => Number(termek.price ?? termek.ar ?? 0)); %>
+    <% const darabszam = termekek.length; %>
+    <% const atlagar = darabszam ? Math.round(arak.reduce((osszeg, ar) => osszeg + ar, 0) / darabszam) : 0; %>
+    <% const legdragabb = darabszam ? Math.max(...arak) : 0; %>
+    <% const legolcsobb = darabszam ? Math.min(...arak) : 0; %>
+
+    <a href="/">foldal</a>
+    <h1>Statisztika</h1>
+    <ul>
+        <li>Termékek darabszáma: <%= darabszam %></li>
+        <li>Termékek átlagára: <%= atlagar %></li>
+        <li>Legdrágább termék ára: <%= legdragabb %></li>
+        <li>Legolcsóbb termék ára: <%= legolcsobb %></li>
+    </ul>
+</body>
+</html>

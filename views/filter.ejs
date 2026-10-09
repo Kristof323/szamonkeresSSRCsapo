@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-
+ 
     <form action="" method="get">
         <label for="kategoria">Kategória:</label>
         <select name="kategoria" id="kategoria">
@@ -17,7 +17,7 @@
             <option value="játék">Játék</option>
         </select>
         <button type="submit">Szűrés</button>
-
+ 
         <table>
             <tr>
                 <th>Név</th>
@@ -26,9 +26,7 @@
                 <th>Készlet</th>
             </tr>
             <tbody>
-                <% const selectedCategory = typeof kategoria !== 'undefined' ? kategoria : ''; %>
-                <% const productList = typeof products !== 'undefined' && Array.isArray(products) ? products : []; %>
-                <% productList.filter(product => !selectedCategory || (product.category ?? product.kategoria) === selectedCategory).forEach(product => { %>
+                <% products.forEach(product => { %>
                     <tr class="<%= Number(product.stock) === 0 ? 'red bold' : '' %>">
                         <td><%= product.name %></td>
                         <td><%= product.category %></td>
@@ -42,3 +40,4 @@
         <p><a href="/">Vissza a főoldalra</a></p>
 </body>
 </html>
+ 

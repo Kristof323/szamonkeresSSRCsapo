@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Post, Query, Render } from '@nestjs/common';
 import { AppService } from './app.service.js';
+import { get } from 'https';
 
 export class CreateProductDto {
   name!: string;
@@ -97,17 +98,17 @@ private JsonData = [
   @Render("filter")
   getFilter(@Query('category') category: string) {
     const filteredProducts = this.JsonData
-      .filter(product => product.category === category)
+      .filter((a) => !category || a.category === category)
       .sort((a, b) => b.stock - a.stock);
-
+ 
     return {
       products: filteredProducts
     };
   }
 
  
-  @Post("/new")
-  @Render("new")
+  @Get("new")
+  @Render("/new")
   postNew(@Body() body: CreateProductDto) {
     const newProduct: CreateProductDto = {
       name: body.name,
@@ -121,6 +122,14 @@ private JsonData = [
     return {
       message: "Termék sikeresen hozzáadva!",
       product: newProduct
+    };
+  }
+
+  @Get("stats")
+  @Render("stats")
+  getStats() {
+    return {
+      products: this.JsonData
     };
   }
 
